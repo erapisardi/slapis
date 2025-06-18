@@ -1,103 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Slapis Viewer - Tailwind</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      const imageList = [
-        // esempio, sostituisci con i tuoi nomi reali
-        "precip_3h_18h20250605_00h.png",
-      "precip_3h_21h20250605_00h.png",
-      "precip_1h_00h20250606_00h.png",
-      "precip_1h_01h20250606_00h.png"
-      ];
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Slapis Viewer - Complete Interface</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    const imageList = [
+      "precip_1h_01h20250604_00h.png", "precip_1h_01h20250605_00h.png",
+      "precip_1h_02h20250604_00h.png", "precip_1h_02h20250605_00h.png",
+      "precip_1h_03h20250604_00h.png", "precip_1h_03h20250605_00h.png",
+      "precip_1h_04h20250604_00h.png", "precip_1h_04h20250605_00h.png",
+      "precip_1h_05h20250604_00h.png", "precip_1h_05h20250605_00h.png",
+      "precip_1h_06h20250604_00h.png", "precip_1h_06h20250605_00h.png",
+      "precip_1h_07h20250604_00h.png", "precip_1h_07h20250605_00h.png",
+      "precip_1h_08h20250604_00h.png", "precip_1h_08h20250605_00h.png",
+      "precip_1h_09h20250604_00h.png", "precip_1h_09h20250605_00h.png",
+      "precip_1h_10h20250604_00h.png", "precip_1h_10h20250605_00h.png",
+      "precip_1h_11h20250604_00h.png", "precip_1h_11h20250605_00h.png",
+      "precip_1h_12h20250604_00h.png", "precip_1h_12h20250605_00h.png",
+      "precip_1h_13h20250604_00h.png", "precip_1h_13h20250605_00h.png",
+      "precip_1h_14h20250604_00h.png", "precip_1h_14h20250605_00h.png",
+      "precip_1h_15h20250604_00h.png", "precip_1h_15h20250605_00h.png",
+      "precip_1h_16h20250604_00h.png", "precip_1h_16h20250605_00h.png",
+      "precip_1h_17h20250604_00h.png", "precip_1h_17h20250605_00h.png",
+      "precip_1h_18h20250604_00h.png", "precip_1h_18h20250605_00h.png",
+      "precip_1h_19h20250604_00h.png", "precip_1h_19h20250605_00h.png",
+      "precip_1h_20h20250604_00h.png"
+    ];
 
-      let currentIndex = 0;
+    let currentIndex = 0;
+    let playInterval = null;
 
-      function showImage() {
-        const img = document.getElementById("mainImage");
-        img.src = `images/${imageList[currentIndex]}`;
+    function showImage() {
+      const img = document.getElementById("mainImage");
+      img.src = `images/${imageList[currentIndex]}`;
+      document.getElementById("imgNumDisplay").textContent = currentIndex + 1;
+      document.getElementById("imgTotalDisplay").textContent = imageList.length;
+    }
+
+    function nextImage() {
+      if (currentIndex < imageList.length - 1) currentIndex++;
+      showImage();
+    }
+
+    function prevImage() {
+      if (currentIndex > 0) currentIndex--;
+      showImage();
+    }
+
+    function goTo(index) {
+      currentIndex = Math.min(Math.max(0, index), imageList.length - 1);
+      showImage();
+    }
+
+    function togglePlay() {
+      const btn = document.getElementById("playBtn");
+      if (playInterval) {
+        clearInterval(playInterval);
+        playInterval = null;
+        btn.textContent = "Play";
+      } else {
+        playInterval = setInterval(() => {
+          currentIndex = (currentIndex + 1) % imageList.length;
+          showImage();
+        }, 500);
+        btn.textContent = "Stop";
       }
+    }
 
-      function nextImage() {
-        if (currentIndex < imageList.length - 1) currentIndex++;
-        showImage();
-      }
+    window.onload = () => showImage();
+  </script>
+</head>
+<body class="bg-gray-100 font-sans">
+  <div class="max-w-7xl mx-auto p-6">
+    <div class="grid grid-cols-12 gap-6">
+      <!-- Sidebar -->
+      <aside class="col-span-3 bg-white p-4 rounded-lg shadow">
+        <h2 class="text-xl font-semibold mb-4">Controls</h2>
+        <div class="space-y-2">
+          <button onclick="prevImage()" class="w-full bg-cyan-500 text-white px-4 py-2 rounded hover:bg-cyan-600">&laquo; Prev</button>
+          <button onclick="nextImage()" class="w-full bg-cyan-500 text-white px-4 py-2 rounded hover:bg-cyan-600">Next &raquo;</button>
+          <input type="number" value="1" min="1" max="99" onchange="goTo(parseInt(this.value)-1)" class="w-full border px-2 py-1 rounded text-center">
+          <button onclick="goTo(0)" class="w-full bg-blue-600 text-white rounded py-2">First</button>
+          <button onclick="goTo(imageList.length - 1)" class="w-full bg-blue-600 text-white rounded py-2">Last</button>
+          <button id="playBtn" onclick="togglePlay()" class="w-full bg-green-500 text-white rounded py-2">Play</button>
+        </div>
+      </aside>
 
-      function prevImage() {
-        if (currentIndex > 0) currentIndex--;
-        showImage();
-      }
-
-      function goTo(index) {
-        currentIndex = Math.min(Math.max(0, index), imageList.length - 1);
-        showImage();
-      }
-
-      window.onload = () => {
-        showImage();
-      };
-    </script>
-  </head>
-
-  <body class="bg-gray-100 font-sans">
-    <div class="max-w-7xl mx-auto p-6">
-      <div class="grid grid-cols-12 gap-6">
-        <!-- Sidebar -->
-        <aside class="col-span-3 bg-white p-4 rounded-lg shadow">
-          <h2 class="text-xl font-semibold mb-4">Parameters</h2>
-          <ul class="space-y-2">
-            <li><button class="w-full text-left px-3 py-2 rounded hover:bg-blue-50">Pcp 1h</button></li>
-            <li><button class="w-full text-left px-3 py-2 rounded hover:bg-blue-50">Pcp 3h</button></li>
-            <li><button class="w-full text-left px-3 py-2 rounded hover:bg-blue-50">Wind @10m</button></li>
-            <li><button class="w-full text-left px-3 py-2 rounded hover:bg-blue-50">T2m</button></li>
-          </ul>
-          <div class="mt-6">
-            <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Load Images</button>
-          </div>
-        </aside>
-
-        <!-- Main content -->
-        <main class="col-span-9 bg-white p-4 rounded-lg shadow">
-          <h1 class="text-2xl font-bold mb-4">Forecast Map</h1>
-          <div class="bg-gray-200 flex items-center justify-center rounded overflow-hidden">
-            <img id="mainImage" class="max-w-full max-h-[70vh] object-contain" alt="Forecast frame" />
-          </div>
-
-          <div class="flex justify-between mt-4">
-            <button onclick="prevImage()" class="bg-cyan-500 text-white px-4 py-2 rounded hover:bg-cyan-600">&laquo; Prev</button>
-            <input
-              type="number"
-              value="1"
-              min="1"
-              max="99"
-              onchange="goTo(parseInt(this.value)-1)"
-              class="border px-2 py-1 rounded w-24 text-center"
-            />
-            <button onclick="nextImage()" class="bg-cyan-500 text-white px-4 py-2 rounded hover:bg-cyan-600">Next &raquo;</button>
-          </div>
-
-          <div class="text-sm text-gray-500 mt-2 text-center">
-            Image <span id="imgNumDisplay">1</span> of <span id="imgTotalDisplay">...</span>
-          </div>
-        </main>
-      </div>
+      <!-- Main content -->
+      <main class="col-span-9 bg-white p-4 rounded-lg shadow">
+        <h1 class="text-2xl font-bold mb-4">Forecast Map</h1>
+        <div class="bg-gray-200 flex items-center justify-center rounded overflow-hidden">
+          <img id="mainImage" class="max-w-full max-h-[70vh] object-contain" alt="Forecast frame">
+        </div>
+        <div class="text-sm text-gray-500 mt-2 text-center">
+          Image <span id="imgNumDisplay">1</span> of <span id="imgTotalDisplay">...</span>
+        </div>
+      </main>
     </div>
-
-    <script>
-      const updateDisplay = () => {
-        document.getElementById("imgNumDisplay").textContent = currentIndex + 1;
-        document.getElementById("imgTotalDisplay").textContent = imageList.length;
-      };
-      const showImageWithUpdate = () => {
-        showImage();
-        updateDisplay();
-      };
-
-      // override showImage
-      showImage = showImageWithUpdate;
-    </script>
-  </body>
+  </div>
+</body>
 </html>
