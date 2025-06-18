@@ -7,7 +7,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     const datasets = {
-      "Pcp 1h": [
+      "Precipitation 1h": [
         "precip_1h_01h20250604_00h.png", "precip_1h_01h20250605_00h.png",
         "precip_1h_02h20250604_00h.png", "precip_1h_02h20250605_00h.png",
         "precip_1h_03h20250604_00h.png", "precip_1h_03h20250605_00h.png",
@@ -29,17 +29,17 @@
         "precip_1h_19h20250604_00h.png", "precip_1h_19h20250605_00h.png",
         "precip_1h_20h20250604_00h.png"
       ],
-      "Pcp 3h": [
+      "Precipitation 3h": [
         "precip_3h_18h20250605_00h.png", "precip_3h_21h20250605_00h.png"
       ],
       "Wind @10m": [],
-      "T2m": []
+      "Temperature 2m": []
     };
 
     let currentList = [];
     let currentIndex = 0;
     let playInterval = null;
-    let selectedParam = "Pcp 1h";
+    let selectedParam = "Precipitation 1h";
 
     function showImage() {
       const img = document.getElementById("mainImage");
@@ -97,21 +97,21 @@
       showImage();
     }
 
-    window.onload = () => selectParameter("Pcp 1h");
+    window.onload = () => selectParameter("Precipitation 1h");
   </script>
 </head>
 <body class="bg-gray-50 font-sans min-h-screen">
   <div class="max-w-7xl mx-auto p-6">
-    <h1 class="text-3xl font-bold text-center text-cyan-700 mb-4">Slapis Viewer</h1>
+    <h1 class="text-3xl font-bold text-cyan-700 mb-6">Slapis Viewer</h1>
     <div class="grid grid-cols-12 gap-6">
       <!-- Sidebar -->
       <aside class="col-span-3 bg-white p-4 rounded-lg shadow self-start">
         <h2 class="text-xl font-semibold mb-4">Parameters</h2>
         <ul class="space-y-2">
-          <li><button id="btn-Pcp 1h" onclick="selectParameter('Pcp 1h')" class="param-button w-full text-left px-3 py-2 rounded hover:bg-blue-50">Pcp 1h</button></li>
-          <li><button id="btn-Pcp 3h" onclick="selectParameter('Pcp 3h')" class="param-button w-full text-left px-3 py-2 rounded hover:bg-blue-50">Pcp 3h</button></li>
+          <li><button id="btn-Precipitation 1h" onclick="selectParameter('Precipitation 1h')" class="param-button w-full text-left px-3 py-2 rounded hover:bg-blue-50">Precipitation 1h</button></li>
+          <li><button id="btn-Precipitation 3h" onclick="selectParameter('Precipitation 3h')" class="param-button w-full text-left px-3 py-2 rounded hover:bg-blue-50">Precipitation 3h</button></li>
           <li><button id="btn-Wind @10m" onclick="selectParameter('Wind @10m')" class="param-button w-full text-left px-3 py-2 rounded hover:bg-blue-50">Wind @10m</button></li>
-          <li><button id="btn-T2m" onclick="selectParameter('T2m')" class="param-button w-full text-left px-3 py-2 rounded hover:bg-blue-50">T2m</button></li>
+          <li><button id="btn-Temperature 2m" onclick="selectParameter('Temperature 2m')" class="param-button w-full text-left px-3 py-2 rounded hover:bg-blue-50">Temperature 2m</button></li>
         </ul>
         <div class="mt-6">
           <button onclick="showImage()" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 w-full">Load Images</button>
