@@ -7,122 +7,121 @@
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body class="bg-gray-50 font-sans text-gray-800">
-    <header class="bg-white shadow-sm py-4 px-6 mb-4">
-      <h1 class="text-2xl font-bold text-[#58928C] tracking-wide">SLAPIS - SAHEL</h1>
+    <header class="bg-white shadow p-6 mb-8">
+      <div class="max-w-7xl mx-auto">
+        <h1 class="text-3xl font-bold text-teal-700">SLAPIS - SAHEL</h1>
+      </div>
     </header>
 
     <main class="max-w-7xl mx-auto px-4">
-      <!-- Sezione top -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+      <!-- Section des 3 colonnes -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
         <!-- Modèle Global -->
-        <section>
-          <h2 class="text-xl font-semibold text-center text-gray-700 mb-4">Modèle Global</h2>
+        <div>
+          <h2 class="text-xl font-semibold text-gray-700 mb-4">Modèle Global</h2>
           <div class="space-y-4">
-            <!-- WRF04GFS -->
-            <div class="bg-white shadow rounded-lg p-4 text-center">
+            <div class="bg-white p-4 rounded-lg shadow h-full flex flex-col items-center justify-between">
               <h3 class="font-bold text-lg">WRF04GFS</h3>
-              <p class="text-xs text-gray-600 mt-1">mer., 18–06–2025 00 UTC</p>
-              <p class="text-sm mt-2 text-gray-500">Preview</p>
-              <div class="mt-2 space-x-2">
-                <a href="#" class="bg-[#58928C] text-white px-4 py-1 rounded">00</a>
-                <a href="#" class="bg-[#58928C] text-white px-4 py-1 rounded">12</a>
+              <p class="text-sm text-gray-600">mer., 18–06–2025 00 UTC</p>
+              <p class="text-sm text-gray-600">Preview</p>
+              <div class="flex gap-2 mt-2">
+                <a href="#" class="bg-teal-600 text-white px-4 py-1 rounded hover:bg-teal-700">00</a>
+                <a href="#" class="bg-teal-600 text-white px-4 py-1 rounded hover:bg-teal-700">12</a>
               </div>
             </div>
-            <!-- MOL03GFS -->
-            <div class="bg-white shadow rounded-lg p-4 text-center">
+
+            <div class="bg-white p-4 rounded-lg shadow h-full flex flex-col items-center justify-between">
               <h3 class="font-bold text-lg">MOL03GFS</h3>
-              <p class="text-xs text-gray-600 mt-1">mer., 18–06–2025 00 UTC</p>
-              <p class="text-sm mt-2 text-gray-500">Preview</p>
-              <div class="mt-2 space-x-2">
-                <a href="#" class="bg-[#58928C] text-white px-4 py-1 rounded">00</a>
-                <a href="#" class="bg-[#58928C] text-white px-4 py-1 rounded">12</a>
+              <p class="text-sm text-gray-600">mer., 18–06–2025 00 UTC</p>
+              <p class="text-sm text-gray-600">Preview</p>
+              <div class="flex gap-2 mt-2">
+                <a href="#" class="bg-teal-600 text-white px-4 py-1 rounded hover:bg-teal-700">00</a>
+                <a href="#" class="bg-teal-600 text-white px-4 py-1 rounded hover:bg-teal-700">12</a>
               </div>
             </div>
           </div>
-        </section>
+        </div>
 
         <!-- Archives -->
-        <section>
-          <h2 class="text-xl font-semibold text-center text-gray-700 mb-4">Archives</h2>
+        <div>
+          <h2 class="text-xl font-semibold text-gray-700 mb-4">Archives</h2>
           <div class="space-y-4">
-            <!-- WRF04GFS -->
-            <div class="bg-white shadow rounded-lg p-4 text-center">
+            <div class="bg-white p-4 rounded-lg shadow h-full flex flex-col items-center justify-center">
               <h3 class="font-bold text-lg">WRF04GFS</h3>
-              <a href="#" class="block text-[#58928C] hover:underline">ARCHIVE IMG</a>
-              <a href="#" class="block text-[#58928C] hover:underline">ARCHIVE GRIB</a>
+              <a href="#" class="text-teal-600 hover:underline mt-2">ARCHIVE IMG</a>
+              <a href="#" class="text-teal-600 hover:underline">ARCHIVE GRIB</a>
             </div>
-            <!-- MOL03GFS -->
-            <div class="bg-white shadow rounded-lg p-4 text-center">
+            <div class="bg-white p-4 rounded-lg shadow h-full flex flex-col items-center justify-center">
               <h3 class="font-bold text-lg">MOL03GFS</h3>
-              <a href="#" class="block text-[#58928C] hover:underline">ARCHIVE IMG</a>
-              <a href="#" class="block text-[#58928C] hover:underline">ARCHIVE GRIB</a>
+              <a href="#" class="text-teal-600 hover:underline mt-2">ARCHIVE IMG</a>
+              <a href="#" class="text-teal-600 hover:underline">ARCHIVE GRIB</a>
             </div>
           </div>
-        </section>
+        </div>
 
-        <!-- Évaluation -->
-        <section>
-          <h2 class="text-xl font-semibold text-center text-gray-700 mb-4">Évaluation</h2>
+        <!-- Evaluation -->
+        <div>
+          <h2 class="text-xl font-semibold text-gray-700 mb-4">Évaluation</h2>
           <div class="space-y-4">
-            <!-- WRF04GFS -->
-            <div class="bg-white shadow rounded-lg p-4 text-center">
+            <div class="bg-white p-4 rounded-lg shadow h-full flex flex-col items-center justify-between">
               <h3 class="font-bold text-lg">WRF04GFS</h3>
-              <p class="text-[#58928C] font-semibold">2024</p>
-              <div class="mt-2 space-x-2">
-                <a href="#" class="bg-[#58928C] text-white px-4 py-1 rounded">00</a>
-                <a href="#" class="bg-[#58928C] text-white px-4 py-1 rounded">12</a>
+              <p class="text-sm text-teal-600">2024</p>
+              <div class="flex gap-2 mt-2">
+                <a href="#" class="bg-teal-600 text-white px-4 py-1 rounded hover:bg-teal-700">00</a>
+                <a href="#" class="bg-teal-600 text-white px-4 py-1 rounded hover:bg-teal-700">12</a>
               </div>
             </div>
-            <!-- MOL03GFS -->
-            <div class="bg-white shadow rounded-lg p-4 text-center">
+            <div class="bg-white p-4 rounded-lg shadow h-full flex flex-col items-center justify-between">
               <h3 class="font-bold text-lg">MOL03GFS</h3>
-              <p class="text-[#58928C] font-semibold">2024</p>
-              <div class="mt-2 space-x-2">
-                <a href="#" class="bg-[#58928C] text-white px-4 py-1 rounded">00</a>
-                <a href="#" class="bg-[#58928C] text-white px-4 py-1 rounded">12</a>
+              <p class="text-sm text-teal-600">2024</p>
+              <div class="flex gap-2 mt-2">
+                <a href="#" class="bg-teal-600 text-white px-4 py-1 rounded hover:bg-teal-700">00</a>
+                <a href="#" class="bg-teal-600 text-white px-4 py-1 rounded hover:bg-teal-700">12</a>
               </div>
             </div>
           </div>
-        </section>
+        </div>
       </div>
 
-      <!-- Caractéristiques des Modèles -->
-      <hr class="my-8 border-t border-gray-300">
-      <h2 class="text-xl font-semibold text-center text-gray-700 mb-4">Caractéristiques des Modèles</h2>
+      <!-- Table des caractéristiques -->
+      <hr class="my-8 border-gray-300" />
+      <h2 class="text-center text-xl font-semibold text-gray-700 mb-4">
+        Caractéristiques des Modèles
+      </h2>
       <div class="overflow-x-auto">
-        <table class="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
-          <thead>
-            <tr class="bg-gray-100 text-left text-sm font-semibold text-gray-700">
-              <th class="px-6 py-3">Caractéristique</th>
-              <th class="px-6 py-3">WRF04GFS</th>
-              <th class="px-6 py-3">MOL03GFS</th>
+        <table class="w-full text-left table-auto border border-gray-200">
+          <thead class="bg-gray-100">
+            <tr>
+              <th class="px-4 py-2 font-semibold">Caractéristique</th>
+              <th class="px-4 py-2 font-semibold">WRF04GFS</th>
+              <th class="px-4 py-2 font-semibold">MOL03GFS</th>
             </tr>
           </thead>
-          <tbody class="text-sm text-gray-600">
+          <tbody>
             <tr class="border-t">
-              <td class="px-6 py-3">Résolution Horizontale</td>
-              <td class="px-6 py-3">4.0 km</td>
-              <td class="px-6 py-3">3.0 km</td>
+              <td class="px-4 py-2">Résolution Horizontale</td>
+              <td class="px-4 py-2">4.0 km</td>
+              <td class="px-4 py-2">3.0 km</td>
             </tr>
             <tr class="border-t">
-              <td class="px-6 py-3">Microphysique</td>
-              <td class="px-6 py-3">WSM6</td>
-              <td class="px-6 py-3">MPM</td>
+              <td class="px-4 py-2">Microphysique</td>
+              <td class="px-4 py-2">WSM6</td>
+              <td class="px-4 py-2">MPM</td>
             </tr>
             <tr class="border-t">
-              <td class="px-6 py-3">Schéma de Convection</td>
-              <td class="px-6 py-3">Grell-Freitas</td>
-              <td class="px-6 py-3">Résolu Explicit</td>
+              <td class="px-4 py-2">Schéma de Convection</td>
+              <td class="px-4 py-2">Grell-Freitas</td>
+              <td class="px-4 py-2">Résolu Explicit</td>
             </tr>
             <tr class="border-t">
-              <td class="px-6 py-3">Domaine Géographique</td>
-              <td class="px-6 py-3">Afrique de l'Ouest (Sahel)</td>
-              <td class="px-6 py-3">Afrique de l'Ouest (Sahel)</td>
+              <td class="px-4 py-2">Domaine Géographique</td>
+              <td class="px-4 py-2">Afrique de l'Ouest (Sahel)</td>
+              <td class="px-4 py-2">Afrique de l'Ouest (Sahel)</td>
             </tr>
             <tr class="border-t">
-              <td class="px-6 py-3">Forçage Initial / Limite</td>
-              <td class="px-6 py-3">GFS</td>
-              <td class="px-6 py-3">GFS</td>
+              <td class="px-4 py-2">Forçage Initial / Limite</td>
+              <td class="px-4 py-2">GFS</td>
+              <td class="px-4 py-2">GFS</td>
             </tr>
           </tbody>
         </table>
