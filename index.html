@@ -1,68 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MOL03GFS 00z - Tailwind Refactor</title>
-  <script defer>
-    // Funzioni base con lista immagini
-    const imageList = [
-      "precip_3h_18h20250605_00h.png",
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Slapis Viewer - Tailwind</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      const imageList = [
+        // esempio, sostituisci con i tuoi nomi reali
+        "precip_3h_18h20250605_00h.png",
       "precip_3h_21h20250605_00h.png",
       "precip_1h_00h20250606_00h.png",
       "precip_1h_01h20250606_00h.png"
-    ];
+      ];
 
-    let currentImage = 1;
-    const firstImage = 1;
-    const lastImage = imageList.length;
-    const imgEl = () => document.getElementById("mainImage");
+      let currentIndex = 0;
 
-    const showImage = () => {
-      imgEl().src = `images/${imageList[currentImage - 1]}`;
-    };
+      function showImage() {
+        const img = document.getElementById("mainImage");
+        img.src = `images/${imageList[currentIndex]}`;
+      }
 
-    const goToImage = (n) => {
-      currentImage = Math.min(Math.max(firstImage, n), lastImage);
-      showImage();
-    };
+      function nextImage() {
+        if (currentIndex < imageList.length - 1) currentIndex++;
+        showImage();
+      }
 
-    const prevImage = () => goToImage(currentImage - 1);
-    const nextImage = () => goToImage(currentImage + 1);
+      function prevImage() {
+        if (currentIndex > 0) currentIndex--;
+        showImage();
+      }
 
-    window.onload = showImage;
-  </script>
-  <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-orange-50 font-sans">
-  <div class="container mx-auto p-4">
-    <h1 class="text-2xl font-bold text-center text-cyan-700 mb-4">MOL03GFS 00z</h1>
-    <div class="flex flex-col md:flex-row gap-4">
+      function goTo(index) {
+        currentIndex = Math.min(Math.max(0, index), imageList.length - 1);
+        showImage();
+      }
 
-      <!-- Controls -->
-      <div class="md:w-1/4 bg-white rounded shadow p-4 space-y-4">
-        <div class="flex justify-center gap-2">
-          <button onclick="prevImage()" class="px-3 py-1 bg-cyan-500 text-white rounded">&lt;</button>
-          <button onclick="nextImage()" class="px-3 py-1 bg-cyan-500 text-white rounded">&gt;</button>
-        </div>
+      window.onload = () => {
+        showImage();
+      };
+    </script>
+  </head>
 
-        <div class="text-center">
-          <label class="block text-sm font-medium">Go to frame</label>
-          <input type="number" value="1" min="1" max="7" onchange="goToImage(parseInt(this.value))" class="w-full border rounded px-2 py-1">
-        </div>
+  <body class="bg-gray-100 font-sans">
+    <div class="max-w-7xl mx-auto p-6">
+      <div class="grid grid-cols-12 gap-6">
+        <!-- Sidebar -->
+        <aside class="col-span-3 bg-white p-4 rounded-lg shadow">
+          <h2 class="text-xl font-semibold mb-4">Parameters</h2>
+          <ul class="space-y-2">
+            <li><button class="w-full text-left px-3 py-2 rounded hover:bg-blue-50">Pcp 1h</button></li>
+            <li><button class="w-full text-left px-3 py-2 rounded hover:bg-blue-50">Pcp 3h</button></li>
+            <li><button class="w-full text-left px-3 py-2 rounded hover:bg-blue-50">Wind @10m</button></li>
+            <li><button class="w-full text-left px-3 py-2 rounded hover:bg-blue-50">T2m</button></li>
+          </ul>
+          <div class="mt-6">
+            <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Load Images</button>
+          </div>
+        </aside>
 
-        <div class="text-center">
-          <button onclick="goToImage(firstImage)" class="mt-2 w-full bg-cyan-700 text-white rounded py-1">First</button>
-          <button onclick="goToImage(lastImage)" class="mt-1 w-full bg-cyan-700 text-white rounded py-1">Last</button>
-        </div>
+        <!-- Main content -->
+        <main class="col-span-9 bg-white p-4 rounded-lg shadow">
+          <h1 class="text-2xl font-bold mb-4">Forecast Map</h1>
+          <div class="bg-gray-200 flex items-center justify-center rounded overflow-hidden">
+            <img id="mainImage" class="max-w-full max-h-[70vh] object-contain" alt="Forecast frame" />
+          </div>
+
+          <div class="flex justify-between mt-4">
+            <button onclick="prevImage()" class="bg-cyan-500 text-white px-4 py-2 rounded hover:bg-cyan-600">&laquo; Prev</button>
+            <input
+              type="number"
+              value="1"
+              min="1"
+              max="99"
+              onchange="goTo(parseInt(this.value)-1)"
+              class="border px-2 py-1 rounded w-24 text-center"
+            />
+            <button onclick="nextImage()" class="bg-cyan-500 text-white px-4 py-2 rounded hover:bg-cyan-600">Next &raquo;</button>
+          </div>
+
+          <div class="text-sm text-gray-500 mt-2 text-center">
+            Image <span id="imgNumDisplay">1</span> of <span id="imgTotalDisplay">...</span>
+          </div>
+        </main>
       </div>
-
-      <!-- Image Display -->
-      <div class="md:w-3/4 flex justify-center items-center bg-white rounded shadow">
-        <img id="mainImage" alt="Animation Frame" class="max-w-full max-h-[80vh] rounded">
-      </div>
-
     </div>
-  </div>
-</body>
+
+    <script>
+      const updateDisplay = () => {
+        document.getElementById("imgNumDisplay").textContent = currentIndex + 1;
+        document.getElementById("imgTotalDisplay").textContent = imageList.length;
+      };
+      const showImageWithUpdate = () => {
+        showImage();
+        updateDisplay();
+      };
+
+      // override showImage
+      showImage = showImageWithUpdate;
+    </script>
+  </body>
 </html>
